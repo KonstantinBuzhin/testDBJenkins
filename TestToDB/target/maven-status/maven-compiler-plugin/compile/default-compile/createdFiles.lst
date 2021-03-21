@@ -1,0 +1,8 @@
+factoryDB\PostgreSQLConnectorDB.class
+startPackage\App.class
+factoryDB\FactoryDB.class
+factoryDB\FactoryDBsql.class
+factoryDB\ConnectorDB.class
+factoryDB\MySQLConnectorDB.class
+servlets\TableServlet.class
+model\User.class

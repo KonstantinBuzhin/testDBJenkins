@@ -14,7 +14,7 @@ import model.User;
 public class PostgreSQLConnectorDB implements ConnectorDB {
 
 	// Database credentials
-	static final String DB_URL = "jdbc:postgresql:// 172.25.1.5:5432/testDB";
+	static final String DB_URL = "jdbc:postgresql://172.25.1.5:5432/testDB";
 	static final String USER = "postgres";
 	static final String PASS = "postgres";
 
@@ -56,7 +56,6 @@ public class PostgreSQLConnectorDB implements ConnectorDB {
 
 			stmt.close();
 		} catch (SQLException e1) {
-			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
 
@@ -64,7 +63,6 @@ public class PostgreSQLConnectorDB implements ConnectorDB {
 		try {
 			connection.close();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
