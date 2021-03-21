@@ -14,7 +14,7 @@ import model.User;
 public class PostgreSQLConnectorDB implements ConnectorDB {
 
 	// Database credentials
-	static final String DB_URL = "jdbc:postgresql://172.25.1.5:5432/testDB";
+	static final String DB_URL = "jdbc:postgresql://172.25.1.5/testDB";
 	static final String USER = "postgres";
 	static final String PASS = "postgres";
 
