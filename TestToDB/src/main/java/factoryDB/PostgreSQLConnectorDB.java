@@ -18,7 +18,7 @@ public class PostgreSQLConnectorDB implements ConnectorDB {
 	static final String DB_URL = "jdbc:postgresql://192.168.1.103:5432/testDB";
 //	static final String DB_URL = "jdbc:postgresql://localhost:5432/testDB";
 	static final String USER = "postgres";
-	static final String PASS = "password";
+	static final String PASS = "postgres";
 
 	@Override
 	public List<User> getUsers() {
@@ -47,7 +47,7 @@ public class PostgreSQLConnectorDB implements ConnectorDB {
 
 			while (rs.next()) {
 				User user = new User();
-				user.setIdUser(rs.getInt("id_User"));
+				user.setIdUser(rs.getInt("iduser"));
 				user.setName(rs.getString("name"));
 				user.setAge(rs.getInt("age"));
 				listUsers.add(user);
