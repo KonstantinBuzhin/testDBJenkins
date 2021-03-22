@@ -39,7 +39,7 @@ public class TableServlet extends HttpServlet {
 						+ "<td>" + x.getAge() + "</td>" + "  </tr>\r\n");
 			});
 		}
-		responseTemplate.append("</table>");
+		responseTemplate.append("</table border=\"1\">");
 		responseTemplate.append("</body>\n" + "</html>");
 		response.getWriter().write(responseTemplate.toString());
 	}
@@ -48,7 +48,7 @@ public class TableServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		StringBuilder responseTemplate = new StringBuilder(
 				"<html>\n" + "<body>\n" + "<h2>Hello Servlet</h2>\n");
-		responseTemplate.append("<table>\r\n");
+		responseTemplate.append("</table border=\"1\">");
 
 		FactoryDB factory = new FactoryDBsql();
 		ConnectorDB connector = factory.getConnectorDB(new PostgreSQLConnectorDB());
