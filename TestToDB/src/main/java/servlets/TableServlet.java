@@ -14,6 +14,14 @@ import factoryDB.PostgreSQLConnectorDB;
 import model.User;
 
 public class TableServlet extends HttpServlet {
+	
+	public static void main(String[] args) {
+		FactoryDB factory = new FactoryDBsql();
+		ConnectorDB connector = factory.getConnectorDB(new PostgreSQLConnectorDB());
+		List<User> listUsers = connector.getUsers();
+		System.out.println(listUsers!=null);
+		listUsers.stream().forEach(x -> System.out.println(x));
+	}
 
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {

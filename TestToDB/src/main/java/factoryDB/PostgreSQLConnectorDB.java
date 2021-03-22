@@ -14,7 +14,8 @@ import model.User;
 public class PostgreSQLConnectorDB implements ConnectorDB {
 
 	// Database credentials
-	static final String DB_URL = "jdbc:postgresql://172.25.1.5/testDB";
+	static final String DB_URL = "jdbc:postgresql://172.25.1.5:5432/testDB";
+//	static final String DB_URL = "jdbc:postgresql://localhost:5432/testDB";
 	static final String USER = "postgres";
 	static final String PASS = "password";
 
@@ -49,6 +50,7 @@ public class PostgreSQLConnectorDB implements ConnectorDB {
 				user.setName(rs.getString("name"));
 				user.setAge(rs.getInt("age"));
 				listUsers.add(user);
+//				System.out.println(user);
 
 			}
 
