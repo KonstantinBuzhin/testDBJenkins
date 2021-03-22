@@ -27,7 +27,7 @@ public class TableServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
 
 		StringBuilder responseTemplate = new StringBuilder(
-				"<html>\n" + "<body>\n" + "<h2>Hello from Simple Servlet</h2>\n");
+				"<html>\n" + "<body>\n" + "<h2>Hello Servlet</h2>\n");
 		responseTemplate.append("<table>\r\n");
 
 		FactoryDB factory = new FactoryDBsql();
@@ -42,13 +42,12 @@ public class TableServlet extends HttpServlet {
 		responseTemplate.append("</table>");
 		responseTemplate.append("</body>\n" + "</html>");
 		response.getWriter().write(responseTemplate.toString());
-		doGet(request, response);
 	}
 
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		StringBuilder responseTemplate = new StringBuilder(
-				"<html>\n" + "<body>\n" + "<h2>Hello from Simple Servlet</h2>\n");
+				"<html>\n" + "<body>\n" + "<h2>Hello Servlet</h2>\n");
 		responseTemplate.append("<table>\r\n");
 
 		FactoryDB factory = new FactoryDBsql();
@@ -63,7 +62,6 @@ public class TableServlet extends HttpServlet {
 		responseTemplate.append("</table>");
 		responseTemplate.append("</body>\n" + "</html>");
 		response.getWriter().write(responseTemplate.toString());
-		doPost(request, response);
 	}
 
 }

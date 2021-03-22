@@ -51,8 +51,6 @@ public class PostgreSQLConnectorDB implements ConnectorDB {
 				user.setName(rs.getString("name"));
 				user.setAge(rs.getInt("age"));
 				listUsers.add(user);
-//				System.out.println(user);
-
 			}
 
 			rs.close();
