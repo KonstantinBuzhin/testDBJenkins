@@ -11,4 +11,16 @@ public class MySQLConnectorDB implements ConnectorDB {
 		return null;
 	}
 
+	@Override
+	public void createUser(User user) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void getUserById(User user) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }
