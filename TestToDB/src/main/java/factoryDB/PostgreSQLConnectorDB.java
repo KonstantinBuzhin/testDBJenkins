@@ -14,7 +14,8 @@ import model.User;
 public class PostgreSQLConnectorDB implements ConnectorDB {
 
 	// Database credentials
-	static final String DB_URL = "jdbc:postgresql://172.25.1.5:5432/testDB";
+//	static final String DB_URL = "jdbc:postgresql://172.25.1.5:5432/testDB";
+	static final String DB_URL = "jdbc:postgresql://192.168.1.103:5432/testDB";
 //	static final String DB_URL = "jdbc:postgresql://localhost:5432/testDB";
 	static final String USER = "postgres";
 	static final String PASS = "password";
@@ -27,7 +28,7 @@ public class PostgreSQLConnectorDB implements ConnectorDB {
 			System.out.println("PostgreSQL JDBC Driver is not found. Include it in your library path ");
 			e.printStackTrace();
 		}
-		System.out.println("PostgreSQL JDBC Driver successfully connected");
+//		System.out.println("PostgreSQL JDBC Driver successfully connected");
 		Connection connection = null;
 
 		try {
