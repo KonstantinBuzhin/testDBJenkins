@@ -13,7 +13,7 @@ import factoryDB.FactoryDBsql;
 import factoryDB.PostgreSQLConnectorDB;
 import model.User;
 
-public class TableServlet extends HttpServlet {
+public class AddingServlet extends HttpServlet {
 	
 //	public static void main(String[] args) {
 //		FactoryDB factory = new FactoryDBsql();
@@ -28,8 +28,8 @@ public class TableServlet extends HttpServlet {
 
 		StringBuilder responseTemplate = new StringBuilder(
 				"<html>\n" + "<body>\n" + "<h2>Hello Servlet</h2>\n");
-		responseTemplate.append("<form><input type=\"button\" value=\"Add user\"></form>   ");
-		responseTemplate.append("<form><input type=\"button\" value=\"Remove user\"><br>");
+		responseTemplate.append("<form action=\"/adding\"><input type=\"button\" value=\"Add user\"></form>   ");
+		responseTemplate.append("<form action=\"/removing\"><input type=\"button\" value=\"Remove user\"><br>");
 		responseTemplate.append("<table border=\"1\">\r\n");
 
 		FactoryDB factory = new FactoryDBsql();
@@ -50,8 +50,8 @@ public class TableServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		StringBuilder responseTemplate = new StringBuilder(
 				"<html>\n" + "<body>\n" + "<h2>Hello Servlet</h2>\n");
-		responseTemplate.append("<form><input type=\"button\" value=\"Add user\"></form>");
-		responseTemplate.append("<form><input type=\"button\" value=\"Remove user\"></form>");
+		responseTemplate.append("<form action=\"/adding\"><input type=\"button\" value=\"Add user\"></form>     ");
+		responseTemplate.append("<form action=\"/removing\"><input type=\"button\" value=\"Remove user\"></form><br>");
 		responseTemplate.append("<table border=\"1\">");
 
 		FactoryDB factory = new FactoryDBsql();

@@ -13,7 +13,7 @@ import factoryDB.FactoryDBsql;
 import factoryDB.PostgreSQLConnectorDB;
 import model.User;
 
-public class TableServlet extends HttpServlet {
+public class RemovingServlet extends HttpServlet {
 	
 //	public static void main(String[] args) {
 //		FactoryDB factory = new FactoryDBsql();
