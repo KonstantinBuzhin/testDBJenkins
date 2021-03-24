@@ -29,6 +29,7 @@ public class PostgreSQLConnectorDB implements ConnectorDB {
 		}
 		Connection connection = null;
 
+		
 		try {
 			connection = DriverManager.getConnection(DB_URL, USER, PASS);
 
