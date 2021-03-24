@@ -27,12 +27,12 @@ public class AddingServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
 
 		StringBuilder responseTemplate = new StringBuilder("<html>\n" + "<body>\n" + "<h2>Adding page</h2>\n");
-		responseTemplate.append("<form action=\"/testToDB/adding\" method=\"post\">");
+		responseTemplate.append("<form action=\"\" method=\"post\">");
 
 		responseTemplate.append(
-				"<label>Enter name</label><input placeholder=\"Enter name\" name=\"username\" form=\"data\" required /><br>");
+				"<label>Enter name</label><input placeholder=\"Enter name\" name=\"username\" required /><br>");
 		responseTemplate.append(
-				"<label>Enter age</label> <input placeholder=\"Enter age \" name=\"age\" form=\"data\" required /><br>");
+				"<label>Enter age</label> <input placeholder=\"Enter age \" name=\"age\" required /><br>");
 		responseTemplate.append("<input type=\"submit\" value=\"Add user\" />");
 
 		responseTemplate.append("</form> ");
@@ -67,7 +67,7 @@ public class AddingServlet extends HttpServlet {
 			connector.addUser(user);
 			responseTemplate.append("<h4>User is added</h>");
 		}else {
-			responseTemplate.append("<h4>Not added</h>");
+			responseTemplate.append("<h4>Not added</h>"+request.getParameter("username")+request.getParameter("age"));
 		}
 //		responseTemplate.append("<form action=\"/adding\"><input type=\"button\" value=\"Add user\"></form>     ");
 //		responseTemplate
