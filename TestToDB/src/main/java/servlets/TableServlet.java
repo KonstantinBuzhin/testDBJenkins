@@ -35,7 +35,7 @@ public class TableServlet extends HttpServlet {
 		List<User> listUsers = connector.getUsers();
 		if (listUsers != null) {
 			listUsers.stream().forEach(x -> {
-				responseTemplate.append("  <tr>\r\n" + "<td>" + x.getIdUser() + "</td>" + "<td>" + x.getName() + "</td>"
+				responseTemplate.append("  <tr>\r\n" + "<td>" + x.getIdUser() + "</td>" + "<td>" + x.getUsername() + "</td>"
 						+ "<td>" + x.getAge() + "</td>" + "  </tr>\r\n");
 			});
 		}
@@ -55,7 +55,7 @@ public class TableServlet extends HttpServlet {
 		List<User> listUsers = connector.getUsers();
 		if (listUsers != null) {
 			listUsers.stream().forEach(x -> {
-				responseTemplate.append("  <tr>\r\n" + "<td>" + x.getIdUser() + "</td>" + "<td>" + x.getName() + "</td>"
+				responseTemplate.append("  <tr>\r\n" + "<td>" + x.getIdUser() + "</td>" + "<td>" + x.getUsername() + "</td>"
 						+ "<td>" + x.getAge() + "</td>" + "  </tr>\r\n");
 			});
 		}

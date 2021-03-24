@@ -3,7 +3,7 @@ package model;
 public class User {
 
 	private int idUser;
-	private String name;
+	private String username;
 	private int age;
 
 	public int getIdUser() {
@@ -14,12 +14,12 @@ public class User {
 		this.idUser = idUser;
 	}
 
-	public String getName() {
-		return name;
+	public String getUsername() {
+		return username;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setUsername(String username) {
+		this.username = username;
 	}
 
 	public int getAge() {
@@ -32,12 +32,12 @@ public class User {
 
 	@Override
 	public String toString() {
-		return "User [idUser=" + idUser + ", name=" + name + ", age=" + age + "]";
+		return "User [idUser=" + idUser + ", username=" + username + ", age=" + age + "]";
 	}
 
-	public User(int idUser, String name, int age) {
+	public User(int idUser, String username, int age) {
 		this.idUser = idUser;
-		this.name = name;
+		this.username = username;
 		this.age = age;
 	}
 

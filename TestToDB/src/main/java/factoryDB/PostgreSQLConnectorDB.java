@@ -16,7 +16,7 @@ import model.User;
 public class PostgreSQLConnectorDB implements ConnectorDB {
 
 	// Database credentials
-	static final String DB_URL = "jdbc:postgresql://192.168.1.103:5432/testDB";
+	static final String DB_URL = "jdbc:postgresql://192.168.1.101:5432/testingdb";
 	static final String USER = "postgres";
 	static final String PASS = "postgres";
 
@@ -44,8 +44,8 @@ public class PostgreSQLConnectorDB implements ConnectorDB {
 
 			while (rs.next()) {
 				User user = new User();
-				user.setIdUser(rs.getInt("iduser"));
-				user.setName(rs.getString("name"));
+				user.setIdUser(rs.getInt("id"));
+				user.setUsername(rs.getString("username"));
 				user.setAge(rs.getInt("age"));
 				listUsers.add(user);
 			}
@@ -83,8 +83,8 @@ public class PostgreSQLConnectorDB implements ConnectorDB {
 		}
 
 		try {
-			PreparedStatement pst = connection.prepareStatement("INSERT INTO users(name, age) VALUES(?, ?)");
-			pst.setString(1, user.getName());
+			PreparedStatement pst = connection.prepareStatement("INSERT INTO users(username, age) VALUES(?, ?)");
+			pst.setString(1, user.getUsername());
 			pst.setInt(2, user.getAge());
 			pst.execute();
 			pst.close();
