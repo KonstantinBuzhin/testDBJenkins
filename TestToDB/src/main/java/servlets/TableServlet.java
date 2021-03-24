@@ -15,19 +15,21 @@ import model.User;
 
 public class TableServlet extends HttpServlet {
 	
-	public static void main(String[] args) {
-		FactoryDB factory = new FactoryDBsql();
-		ConnectorDB connector = factory.getConnectorDB(new PostgreSQLConnectorDB());
-		List<User> listUsers = connector.getUsers();
-		System.out.println(listUsers!=null);
-		listUsers.stream().forEach(x -> System.out.println(x));
-	}
+//	public static void main(String[] args) {
+//		FactoryDB factory = new FactoryDBsql();
+//		ConnectorDB connector = factory.getConnectorDB(new PostgreSQLConnectorDB());
+//		List<User> listUsers = connector.getUsers();
+//		System.out.println(listUsers!=null);
+//		listUsers.stream().forEach(x -> System.out.println(x));
+//	}
 
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
 
 		StringBuilder responseTemplate = new StringBuilder(
 				"<html>\n" + "<body>\n" + "<h2>Hello Servlet</h2>\n");
+		responseTemplate.append("<input type=\"button\" value=\"Add user\"><br>");
+		responseTemplate.append("<input type=\"button\" value=\"Remove user\"><br>");
 		responseTemplate.append("<table border=\"1\">\r\n");
 
 		FactoryDB factory = new FactoryDBsql();
@@ -48,6 +50,8 @@ public class TableServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		StringBuilder responseTemplate = new StringBuilder(
 				"<html>\n" + "<body>\n" + "<h2>Hello Servlet</h2>\n");
+		responseTemplate.append("<input type=\"button\" value=\"Add user\"><br>");
+		responseTemplate.append("<input type=\"button\" value=\"Remove user\"><br>");
 		responseTemplate.append("<table border=\"1\">");
 
 		FactoryDB factory = new FactoryDBsql();
