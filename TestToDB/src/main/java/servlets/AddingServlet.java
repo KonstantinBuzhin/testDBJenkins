@@ -27,9 +27,9 @@ public class AddingServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
 
 		StringBuilder responseTemplate = new StringBuilder(
-				"<html>\n" + "<body>\n" + "<h2>Hello Servlet</h2>\n");
+				"<html>\n" + "<body>\n" + "<h2>Home page</h2>\n");
 		responseTemplate.append("<form action=\"/adding\"><input type=\"button\" value=\"Add user\"></form>   ");
-		responseTemplate.append("<form action=\"/removing\"><input type=\"button\" value=\"Remove user\"><br>");
+		responseTemplate.append("<form action=\"/removing\"><input type=\"button\" value=\"Remove user\"><br><br>");
 		responseTemplate.append("<table border=\"1\">\r\n");
 
 		FactoryDB factory = new FactoryDBsql();
@@ -49,9 +49,9 @@ public class AddingServlet extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		StringBuilder responseTemplate = new StringBuilder(
-				"<html>\n" + "<body>\n" + "<h2>Hello Servlet</h2>\n");
+				"<html>\n" + "<body>\n" + "<h2>Home page</h2>\n");
 		responseTemplate.append("<form action=\"/adding\"><input type=\"button\" value=\"Add user\"></form>     ");
-		responseTemplate.append("<form action=\"/removing\"><input type=\"button\" value=\"Remove user\"></form><br>");
+		responseTemplate.append("<form action=\"/removing\"><input type=\"button\" value=\"Remove user\"></form><br><br>");
 		responseTemplate.append("<table border=\"1\">");
 
 		FactoryDB factory = new FactoryDBsql();
