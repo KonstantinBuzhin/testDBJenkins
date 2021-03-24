@@ -27,7 +27,7 @@ public class TableServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
 
 		StringBuilder responseTemplate = new StringBuilder(
-				"<html>\n" + "<body>\n" + "<h2>Hello Servlet</h2>\n");
+				"<html>\n" + "<body>\n" + "<h2>Home page</h2>\n");
 		responseTemplate.append("<input type=\"button\" onclick=\"location.href='/testToDB/adding';\" value=\"Add user\" />   ");
 		responseTemplate.append("<input type=\"button\" onclick=\"location.href='/testToDB/removing';\" value=\"Remove user\" /><br><br>");
 		responseTemplate.append("<table border=\"1\">\r\n");
@@ -49,7 +49,7 @@ public class TableServlet extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		StringBuilder responseTemplate = new StringBuilder(
-				"<html>\n" + "<body>\n" + "<h2>Hello Servlet</h2>\n");
+				"<html>\n" + "<body>\n" + "<h2>Home page</h2>\n");
 		responseTemplate.append("<input type=\"button\" onclick=\"location.href='/testToDB/removaddinging';\" value=\"Add user\" />   ");
 		responseTemplate.append("<input type=\"button\" onclick=\"location.href='/testToDB/removing';\" value=\"Remove user\" /><br><br>");
 		responseTemplate.append("<table border=\"1\">");
