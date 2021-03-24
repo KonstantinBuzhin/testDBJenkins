@@ -68,7 +68,7 @@ public class PostgreSQLConnectorDB implements ConnectorDB {
 	}
 
 	@Override
-	public void createUser(User user) {
+	public void addUser(User user) {
 		try {
 			Class.forName("org.postgresql.Driver");
 		} catch (ClassNotFoundException e) {

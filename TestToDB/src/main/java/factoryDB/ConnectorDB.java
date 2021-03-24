@@ -7,7 +7,7 @@ import model.User;
 public interface ConnectorDB {
 	
 	List<User> getUsers();
-	void createUser(User user);
+	void addUser(User user);
 	void getUserById(User user);
 
 }
