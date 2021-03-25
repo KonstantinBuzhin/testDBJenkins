@@ -1,5 +1,6 @@
 package factoryDB;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import model.User;
@@ -24,6 +25,12 @@ public class MySQLConnectorDB implements ConnectorDB {
 	@Override
 	public void removeUser(User user) {
 		
+	}
+
+	@Override
+	public List<User> sortUsers(String field, String howToChange) {
+
+		return new ArrayList<User>();
 	}
 
 }

@@ -29,7 +29,6 @@ public class PostgreSQLConnectorDB implements ConnectorDB {
 		}
 		Connection connection = null;
 
-		
 		try {
 			connection = DriverManager.getConnection(DB_URL, USER, PASS);
 
@@ -102,7 +101,7 @@ public class PostgreSQLConnectorDB implements ConnectorDB {
 
 	@Override
 	public void getUserById(User user) {
-		
+
 		try {
 			Class.forName("org.postgresql.Driver");
 		} catch (ClassNotFoundException e) {
@@ -116,28 +115,26 @@ public class PostgreSQLConnectorDB implements ConnectorDB {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		
+
 		Statement stmt;
 		try {
 			stmt = connection.createStatement();
-		
-		stmt.execute("CREATE OR REPLACE PROCEDURE updateIvan(theAge int) AS '"
-		    + " BEGIN "
-		    + "    UPDATE users SET age = theAge WHERE name = 'ivan';"
-		    + "    COMMIT; "
-		    + " END;' LANGUAGE plpgsql");
-		stmt.close();
 
-		// Procedure call.
-		CallableStatement proc = connection.prepareCall("{ ? = call updateIvan() }");
-		proc.registerOutParameter(1, Types.OTHER);
-		proc.execute();
-		ResultSet results = (ResultSet) proc.getObject(1);
-		while (results.next()) {
-		    // do something with the results...
-		}
-		results.close();
-		proc.close();
+			stmt.execute("CREATE OR REPLACE PROCEDURE updateIvan(theAge int) AS '" + " BEGIN "
+					+ "    UPDATE users SET age = theAge WHERE name = 'ivan';" + "    COMMIT; "
+					+ " END;' LANGUAGE plpgsql");
+			stmt.close();
+
+			// Procedure call.
+			CallableStatement proc = connection.prepareCall("{ ? = call updateIvan() }");
+			proc.registerOutParameter(1, Types.OTHER);
+			proc.execute();
+			ResultSet results = (ResultSet) proc.getObject(1);
+			while (results.next()) {
+				// do something with the results...
+			}
+			results.close();
+			proc.close();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -179,7 +176,59 @@ public class PostgreSQLConnectorDB implements ConnectorDB {
 			e.printStackTrace();
 		}
 
+	}
+
+	public List<User> sortUsers(String field, String howToChange) {
+		List<User> listUsers = new ArrayList<>();
+		try {
+			Class.forName("org.postgresql.Driver");
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+		Connection connection = null;
+
+		try {
+			connection = DriverManager.getConnection(DB_URL, USER, PASS);
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 		
+		String change = null;
+		
+		if (howToChange.equals("increase")) {
+			change = "ASC";
+		} else if (howToChange.equals("decrease")) {
+			change = "DESC";
+		}
+		
+		if (change != null) {
+			try {
+				PreparedStatement pst = connection.prepareStatement("SELECT * FROM USERS ORDER BY ? ?");
+				pst.setString(1, field);
+				pst.setString(2, change);
+				ResultSet rs = pst.executeQuery();
+				while (rs.next()) {
+					User user = new User();
+					user.setIdUser(rs.getInt("id"));
+					user.setUsername(rs.getString("username"));
+					user.setAge(rs.getInt("age"));
+					listUsers.add(user);
+				}
+
+				rs.close();
+				pst.close();
+			} catch (SQLException ex) {
+				ex.printStackTrace();
+			}
+		}
+		try {
+			connection.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return listUsers;
+
 	}
 
 }

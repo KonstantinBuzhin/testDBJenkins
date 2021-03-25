@@ -31,6 +31,8 @@ public class TableServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
 
 		StringBuilder responseTemplate = getHeaderPage(title);
+		
+		responseTemplate.append(getTableSort(responseTemplate));
 
 		responseTemplate.append("<table border=\"1\">\r\n");
 
@@ -38,7 +40,7 @@ public class TableServlet extends HttpServlet {
 		connector = factory.getConnectorDB(new PostgreSQLConnectorDB());
 		List<User> listUsers = connector.getUsers();
 		if (listUsers != null) {
-			listUsers.stream().forEach(x -> {
+			listUsers.forEach(x -> {
 				responseTemplate.append("  <tr>\r\n" + "<td>" + x.getIdUser() + "</td>" + "<td>" + x.getUsername()
 						+ "</td>" + "<td>" + x.getAge() + "</td>" + "  </tr>\r\n");
 			});
@@ -51,18 +53,35 @@ public class TableServlet extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		StringBuilder responseTemplate = getHeaderPage(title);
-
 		responseTemplate.append("<table border=\"1\">");
-
-		factory = new FactoryDBsql();
-		connector = factory.getConnectorDB(new PostgreSQLConnectorDB());
-		List<User> listUsers = connector.getUsers();
-		if (listUsers != null) {
-			listUsers.stream().forEach(x -> {
-				responseTemplate.append("  <tr>\r\n" + "<td>" + x.getIdUser() + "</td>" + "<td>" + x.getUsername()
-						+ "</td>" + "<td>" + x.getAge() + "</td>" + "  </tr>\r\n");
-			});
+		if (request.getParameter("field") != null && request.getParameter("howToChange") != null) {
+			factory = new FactoryDBsql();
+			connector = factory.getConnectorDB(new PostgreSQLConnectorDB());
+			List<User> listUsers = connector.sortUsers(request.getParameter("field"), request.getParameter("howToChange"));
+			if (listUsers != null) {
+				listUsers.forEach(x -> {
+					responseTemplate.append("  <tr>\r\n" + "<td>" + x.getIdUser() + "</td>" + "<td>" + x.getUsername()
+							+ "</td>" + "<td>" + x.getAge() + "</td>" + "  </tr>\r\n");
+				});
+			}
+		}else {
+			
 		}
+		
+		responseTemplate.append(getTableSort(responseTemplate));
+//
+//		responseTemplate.append("<table border=\"1\">");
+//
+//		
+//		
+//		
+//		List<User> listUsers = connector.getUsers();
+//		if (listUsers != null) {
+//			listUsers.stream().forEach(x -> {
+//				responseTemplate.append("  <tr>\r\n" + "<td>" + x.getIdUser() + "</td>" + "<td>" + x.getUsername()
+//						+ "</td>" + "<td>" + x.getAge() + "</td>" + "  </tr>\r\n");
+//			});
+//		}
 		responseTemplate.append("</table>");
 		responseTemplate.append("</body>\n" + "</html>");
 		response.getWriter().write(responseTemplate.toString());
@@ -77,6 +96,36 @@ public class TableServlet extends HttpServlet {
 				.append("<input type=\"button\" onclick=\"location.href='/testToDB/adding';\" value=\"Adding\" />   ");
 		responseTemplate.append(
 				"<input type=\"button\" onclick=\"location.href='/testToDB/removing';\" value=\"Removing\" /><br><br>");
+		return responseTemplate;
+	};
+	
+	public StringBuilder getTableSort(StringBuilder responseTemplate) {
+		
+		responseTemplate.append("<form action=\"\" method=\"post\">");
+		
+		responseTemplate.append("<input type=\"radio\" id=\"username\"\r\n" + 
+				"     name=\"field\" value=\"username\">\r\n" + 
+				"    <label for=\"username\">Username</label>\r\n");
+		
+		responseTemplate.append("<input type=\"radio\" id=\"age\"\r\n" + 
+				"     name=\"field\" value=\"age\">\r\n" + 
+				"    <label for=\"username\">Age</label>\r\n");
+		
+		responseTemplate.append("<br>");
+		
+		responseTemplate.append("<input type=\"radio\" id=\"increase\"\r\n" + 
+				"     name=\"howToChange\" value=\"increase\">\r\n" + 
+				"    <label for=\"username\">Increase</label>\r\n");
+		
+		responseTemplate.append("<input type=\"radio\" id=\"decrease\"\r\n" + 
+				"     name=\"howToChange\" value=\"decrease\">\r\n" + 
+				"    <label for=\"username\">Decrease</label>\r\n");
+		
+		responseTemplate.append("<input type=\"submit\" value=\"Sort\" />");
+		
+
+
+		responseTemplate.append("</form> ");
 		return responseTemplate;
 	};
 
