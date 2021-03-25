@@ -28,7 +28,7 @@ public class AddingServlet extends HttpServlet {
 
 		StringBuilder responseTemplate = new StringBuilder("<html>\n" + "<body>\n" + "<h2>Adding page</h2>\n");
 		
-		responseTemplate.append("<input type=\"button\" onclick=\"location.href='/testToDB/adding';\" value=\"Home\" />   ");
+		responseTemplate.append("<input type=\"button\" onclick=\"location.href='/testToDB/';\" value=\"Home\" />   ");
 		responseTemplate.append("<input type=\"button\" onclick=\"location.href='/testToDB/adding';\" value=\"Adding\" />   ");
 		responseTemplate.append("<input type=\"button\" onclick=\"location.href='/testToDB/removing';\" value=\"Removing\" /><br><br>");
 		
@@ -50,7 +50,7 @@ public class AddingServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		StringBuilder responseTemplate = new StringBuilder("<html>\n" + "<body>\n" + "<h2>Adding page</h2>\n");
 		
-		responseTemplate.append("<input type=\"button\" onclick=\"location.href='/testToDB/adding';\" value=\"Home\" />   ");
+		responseTemplate.append("<input type=\"button\" onclick=\"location.href='/testToDB/';\" value=\"Home\" />   ");
 		responseTemplate.append("<input type=\"button\" onclick=\"location.href='/testToDB/adding';\" value=\"Adding\" />   ");
 		responseTemplate.append("<input type=\"button\" onclick=\"location.href='/testToDB/removing';\" value=\"Removing\" /><br><br>");
 		
