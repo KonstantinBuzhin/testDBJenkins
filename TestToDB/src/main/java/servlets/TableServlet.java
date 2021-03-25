@@ -32,7 +32,7 @@ public class TableServlet extends HttpServlet {
 
 		StringBuilder responseTemplate = getHeaderPage(title);
 		
-		responseTemplate.append(getTableSort(responseTemplate).toString());
+		responseTemplate.append(getTableSort());
 //		StringBuilder responseTable = new StringBuilder();
 		responseTemplate.append("<table border=\"1\">\r\n");
 
@@ -54,6 +54,9 @@ public class TableServlet extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		StringBuilder responseTemplate = getHeaderPage(title);
+		
+		responseTemplate.append(getTableSort());
+		
 		responseTemplate.append("<table border=\"1\">");
 		if (request.getParameter("field") != null && request.getParameter("howToChange") != null) {
 			factory = new FactoryDBsql();
@@ -69,8 +72,7 @@ public class TableServlet extends HttpServlet {
 			
 		}
 		
-		responseTemplate.append(getTableSort(responseTemplate));
-//
+		
 //		responseTemplate.append("<table border=\"1\">");
 //
 //		
@@ -100,8 +102,8 @@ public class TableServlet extends HttpServlet {
 		return responseTemplate;
 	};
 	
-	public StringBuilder getTableSort(StringBuilder responseTemplate) {
-		
+	public StringBuilder getTableSort() {
+		StringBuilder responseTemplate = new StringBuilder();
 		responseTemplate.append("<form action=\"\" method=\"post\">");
 		
 		responseTemplate.append("<input type=\"radio\" id=\"username\"\r\n" + 
