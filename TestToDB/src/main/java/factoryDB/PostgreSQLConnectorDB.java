@@ -150,4 +150,36 @@ public class PostgreSQLConnectorDB implements ConnectorDB {
 
 	}
 
+	@Override
+	public void removeUser(User user) {
+		try {
+			Class.forName("org.postgresql.Driver");
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+		Connection connection = null;
+
+		try {
+			connection = DriverManager.getConnection(DB_URL, USER, PASS);
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		try {
+			PreparedStatement pst = connection.prepareStatement("DELETE FROM users WHERE id = ?");
+			pst.setInt(1, user.getIdUser());
+			pst.execute();
+			pst.close();
+		} catch (SQLException ex) {
+			ex.printStackTrace();
+		}
+		try {
+			connection.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		
+	}
+
 }

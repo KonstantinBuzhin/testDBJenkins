@@ -21,4 +21,9 @@ public class MySQLConnectorDB implements ConnectorDB {
 		
 	}
 
+	@Override
+	public void removeUser(User user) {
+		
+	}
+
 }

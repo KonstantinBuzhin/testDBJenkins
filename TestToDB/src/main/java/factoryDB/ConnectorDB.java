@@ -8,6 +8,7 @@ public interface ConnectorDB {
 	
 	List<User> getUsers();
 	void addUser(User user);
+	void removeUser(User user);
 	void getUserById(User user);
 
 }

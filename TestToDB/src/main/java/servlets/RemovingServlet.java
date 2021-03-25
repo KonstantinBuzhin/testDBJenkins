@@ -26,44 +26,31 @@ public class RemovingServlet extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
 
-		StringBuilder responseTemplate = new StringBuilder(
-				"<html>\n" + "<body>\n" + "<h2>Hello Servlet</h2>\n");
-		responseTemplate.append("<form action=\"/adding\"><input type=\"button\" value=\"Add user\"></form>   ");
-		responseTemplate.append("<form action=\"/removing\"><input type=\"button\" value=\"Remove user\"><br><br>");
-		responseTemplate.append("<table border=\"1\">\r\n");
+		StringBuilder responseTemplate = new StringBuilder("<html>\n" + "<body>\n" + "<h2>Removing page</h2>\n");
+		responseTemplate.append("<form action=\"\" method=\"post\">");
 
-		FactoryDB factory = new FactoryDBsql();
-		ConnectorDB connector = factory.getConnectorDB(new PostgreSQLConnectorDB());
-		List<User> listUsers = connector.getUsers();
-		if (listUsers != null) {
-			listUsers.stream().forEach(x -> {
-				responseTemplate.append("  <tr>\r\n" + "<td>" + x.getIdUser() + "</td>" + "<td>" + x.getUsername() + "</td>"
-						+ "<td>" + x.getAge() + "</td>" + "  </tr>\r\n");
-			});
-		}
-		responseTemplate.append("</table>");
+		responseTemplate.append(
+				"<label>Enter id</label><input placeholder=\"Enter id\" name=\"id\" required /><br>");
+		responseTemplate.append("<input type=\"submit\" value=\"Remove user\" />");
+
+		responseTemplate.append("</form> ");
+
 		responseTemplate.append("</body>\n" + "</html>");
 		response.getWriter().write(responseTemplate.toString());
 	}
 
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
-		StringBuilder responseTemplate = new StringBuilder(
-				"<html>\n" + "<body>\n" + "<h2>Hello Servlet</h2>\n");
-		responseTemplate.append("<form action=\"/adding\"><input type=\"button\" value=\"Add user\"></form>   ");
-		responseTemplate.append("<form action=\"/removing\"><input type=\"button\" value=\"Remove user\"><br><br>");
-		responseTemplate.append("<table border=\"1\">");
-
-		FactoryDB factory = new FactoryDBsql();
-		ConnectorDB connector = factory.getConnectorDB(new PostgreSQLConnectorDB());
-		List<User> listUsers = connector.getUsers();
-		if (listUsers != null) {
-			listUsers.stream().forEach(x -> {
-				responseTemplate.append("  <tr>\r\n" + "<td>" + x.getIdUser() + "</td>" + "<td>" + x.getUsername() + "</td>"
-						+ "<td>" + x.getAge() + "</td>" + "  </tr>\r\n");
-			});
+		StringBuilder responseTemplate = new StringBuilder("<html>\n" + "<body>\n" + "<h2>Removing page</h2>\n");
+		if (request.getParameter("id") != null) {
+			FactoryDB factory = new FactoryDBsql();
+			ConnectorDB connector = factory.getConnectorDB(new PostgreSQLConnectorDB());
+			User user = new User();
+			user.setIdUser(Integer.valueOf(request.getParameter("id")));
+			connector.removeUser(user);
+			responseTemplate.append("<h4>User is removed</h>");
 		}
-		responseTemplate.append("</table>");
+
 		responseTemplate.append("</body>\n" + "</html>");
 		response.getWriter().write(responseTemplate.toString());
 	}

@@ -37,20 +37,6 @@ public class AddingServlet extends HttpServlet {
 
 		responseTemplate.append("</form> ");
 
-//		responseTemplate.append("<form action=\"/adding\"><input type=\"button\" value=\"Add user\"></form>   ");
-//		responseTemplate.append("<form action=\"/removing\"><input type=\"button\" value=\"Remove user\"><br><br>");
-//		responseTemplate.append("<table border=\"1\">\r\n");
-
-//		FactoryDB factory = new FactoryDBsql();
-//		ConnectorDB connector = factory.getConnectorDB(new PostgreSQLConnectorDB());
-//		List<User> listUsers = connector.getUsers();
-//		if (listUsers != null) {
-//			listUsers.stream().forEach(x -> {
-//				responseTemplate.append("  <tr>\r\n" + "<td>" + x.getIdUser() + "</td>" + "<td>" + x.getUsername() + "</td>"
-//						+ "<td>" + x.getAge() + "</td>" + "  </tr>\r\n");
-//			});
-//		}
-//		responseTemplate.append("</table>");
 		responseTemplate.append("</body>\n" + "</html>");
 		response.getWriter().write(responseTemplate.toString());
 	}
@@ -66,24 +52,8 @@ public class AddingServlet extends HttpServlet {
 			user.setAge(Integer.valueOf(request.getParameter("age")));
 			connector.addUser(user);
 			responseTemplate.append("<h4>User is added</h>");
-		}else {
-			responseTemplate.append("<h4>Not added</h>"+request.getParameter("username")+request.getParameter("age"));
 		}
-//		responseTemplate.append("<form action=\"/adding\"><input type=\"button\" value=\"Add user\"></form>     ");
-//		responseTemplate
-//				.append("<form action=\"/removing\"><input type=\"button\" value=\"Remove user\"></form><br><br>");
-//		responseTemplate.append("<table border=\"1\">");
-//
-//		FactoryDB factory = new FactoryDBsql();
-//		ConnectorDB connector = factory.getConnectorDB(new PostgreSQLConnectorDB());
-//		List<User> listUsers = connector.getUsers();
-//		if (listUsers != null) {
-//			listUsers.stream().forEach(x -> {
-//				responseTemplate.append("  <tr>\r\n" + "<td>" + x.getIdUser() + "</td>" + "<td>" + x.getUsername()
-//						+ "</td>" + "<td>" + x.getAge() + "</td>" + "  </tr>\r\n");
-//			});
-//		}
-//		responseTemplate.append("</table>");
+
 		responseTemplate.append("</body>\n" + "</html>");
 		response.getWriter().write(responseTemplate.toString());
 	}
