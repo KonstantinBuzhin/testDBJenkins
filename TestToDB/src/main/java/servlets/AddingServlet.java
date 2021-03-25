@@ -26,18 +26,22 @@ public class AddingServlet extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
 
-		StringBuilder responseTemplate = new StringBuilder("<html>\n" + "<body>\n" + "<h2>Adding page</h2>\n");
-		
+		StringBuilder responseTemplate = new StringBuilder("<html>\n"
+				+ "<link rel=\"stylesheet\" href=\"https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css\">"
+				+ "<body>\n" + "<h2>Adding page</h2>\n");
+
 		responseTemplate.append("<input type=\"button\" onclick=\"location.href='/testToDB/';\" value=\"Home\" />   ");
-		responseTemplate.append("<input type=\"button\" onclick=\"location.href='/testToDB/adding';\" value=\"Adding\" />   ");
-		responseTemplate.append("<input type=\"button\" onclick=\"location.href='/testToDB/removing';\" value=\"Removing\" /><br><br>");
-		
+		responseTemplate
+				.append("<input type=\"button\" onclick=\"location.href='/testToDB/adding';\" value=\"Adding\" />   ");
+		responseTemplate.append(
+				"<input type=\"button\" onclick=\"location.href='/testToDB/removing';\" value=\"Removing\" /><br><br>");
+
 		responseTemplate.append("<form action=\"\" method=\"post\">");
 
-		responseTemplate.append(
-				"<label>Enter name</label><input placeholder=\"Enter name\" name=\"username\" required /><br>");
-		responseTemplate.append(
-				"<label>Enter age</label> <input placeholder=\"Enter age \" name=\"age\" required /><br>");
+		responseTemplate
+				.append("<label>Enter name</label><input placeholder=\"Enter name\" name=\"username\" required /><br>");
+		responseTemplate
+				.append("<label>Enter age</label> <input placeholder=\"Enter age \" name=\"age\" required /><br>");
 		responseTemplate.append("<input type=\"submit\" value=\"Add user\" />");
 
 		responseTemplate.append("</form> ");
@@ -48,12 +52,16 @@ public class AddingServlet extends HttpServlet {
 
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
-		StringBuilder responseTemplate = new StringBuilder("<html>\n" + "<body>\n" + "<h2>Adding page</h2>\n");
-		
+		StringBuilder responseTemplate = new StringBuilder("<html>\n"
+				+ "<link rel=\"stylesheet\" href=\"https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css\">"
+				+ "<body>\n" + "<h2>Adding page</h2>\n");
+
 		responseTemplate.append("<input type=\"button\" onclick=\"location.href='/testToDB/';\" value=\"Home\" />   ");
-		responseTemplate.append("<input type=\"button\" onclick=\"location.href='/testToDB/adding';\" value=\"Adding\" />   ");
-		responseTemplate.append("<input type=\"button\" onclick=\"location.href='/testToDB/removing';\" value=\"Removing\" /><br><br>");
-		
+		responseTemplate
+				.append("<input type=\"button\" onclick=\"location.href='/testToDB/adding';\" value=\"Adding\" />   ");
+		responseTemplate.append(
+				"<input type=\"button\" onclick=\"location.href='/testToDB/removing';\" value=\"Removing\" /><br><br>");
+
 		if (request.getParameter("username") != null && request.getParameter("age") != null) {
 			FactoryDB factory = new FactoryDBsql();
 			ConnectorDB connector = factory.getConnectorDB(new PostgreSQLConnectorDB());

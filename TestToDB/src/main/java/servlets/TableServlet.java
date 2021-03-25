@@ -27,11 +27,10 @@ public class TableServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
 
 		StringBuilder responseTemplate = new StringBuilder("<html>\n"
-				+ "  <link rel=\"stylesheet\" href=\"https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css\">  "
+				+ "<link rel=\"stylesheet\" href=\"https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css\">"
 				+ "<body>\n" + "<h2>Home page</h2>\n");
 
-		responseTemplate
-				.append("<input type=\"button\" onclick=\"location.href='/testToDB/adding';\" value=\"Home\" />   ");
+		responseTemplate.append("<input type=\"button\" onclick=\"location.href='/testToDB/';\" value=\"Home\" />   ");
 		responseTemplate
 				.append("<input type=\"button\" onclick=\"location.href='/testToDB/adding';\" value=\"Adding\" />   ");
 		responseTemplate.append(
@@ -56,11 +55,10 @@ public class TableServlet extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		StringBuilder responseTemplate = new StringBuilder("<html>\n"
-				+ "  <link rel=\"stylesheet\" href=\"https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css\">  "
+				+ "<link rel=\"stylesheet\" href=\"https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css\">"
 				+ "<body>\n" + "<h2>Home page</h2>\n");
 
-		responseTemplate
-				.append("<input type=\"button\" onclick=\"location.href='/testToDB/adding';\" value=\"Home\" />   ");
+		responseTemplate.append("<input type=\"button\" onclick=\"location.href='/testToDB/';\" value=\"Home\" />   ");
 		responseTemplate
 				.append("<input type=\"button\" onclick=\"location.href='/testToDB/adding';\" value=\"Adding\" />   ");
 		responseTemplate.append(
