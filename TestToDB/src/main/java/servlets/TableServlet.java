@@ -32,8 +32,8 @@ public class TableServlet extends HttpServlet {
 
 		StringBuilder responseTemplate = getHeaderPage(title);
 		
-		responseTemplate.append(getTableSort(responseTemplate));
-
+		responseTemplate = getTableSort(responseTemplate);
+		StringBuilder responseTable = new StringBuilder();
 		responseTemplate.append("<table border=\"1\">\r\n");
 
 		factory = new FactoryDBsql();
@@ -41,10 +41,11 @@ public class TableServlet extends HttpServlet {
 		List<User> listUsers = connector.getUsers();
 		if (listUsers != null) {
 			listUsers.forEach(x -> {
-				responseTemplate.append("  <tr>\r\n" + "<td>" + x.getIdUser() + "</td>" + "<td>" + x.getUsername()
+				responseTable.append("  <tr>\r\n" + "<td>" + x.getIdUser() + "</td>" + "<td>" + x.getUsername()
 						+ "</td>" + "<td>" + x.getAge() + "</td>" + "  </tr>\r\n");
 			});
 		}
+		responseTable.append(responseTable);
 		responseTemplate.append("</table>");
 		responseTemplate.append("</body>\n" + "</html>");
 		response.getWriter().write(responseTemplate.toString());
