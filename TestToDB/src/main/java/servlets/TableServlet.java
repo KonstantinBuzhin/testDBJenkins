@@ -28,8 +28,11 @@ public class TableServlet extends HttpServlet {
 
 		StringBuilder responseTemplate = new StringBuilder(
 				"<html>\n" + "<body>\n" + "<h2>Home page</h2>\n");
-		responseTemplate.append("<input type=\"button\" onclick=\"location.href='/testToDB/adding';\" value=\"Add user\" />   ");
-		responseTemplate.append("<input type=\"button\" onclick=\"location.href='/testToDB/removing';\" value=\"Remove user\" /><br><br>");
+		
+		responseTemplate.append("<input type=\"button\" onclick=\"location.href='/testToDB/adding';\" value=\"Home\" />   ");
+		responseTemplate.append("<input type=\"button\" onclick=\"location.href='/testToDB/adding';\" value=\"Adding\" />   ");
+		responseTemplate.append("<input type=\"button\" onclick=\"location.href='/testToDB/removing';\" value=\"Removing\" /><br><br>");
+		
 		responseTemplate.append("<table border=\"1\">\r\n");
 
 		FactoryDB factory = new FactoryDBsql();
@@ -50,8 +53,11 @@ public class TableServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		StringBuilder responseTemplate = new StringBuilder(
 				"<html>\n" + "<body>\n" + "<h2>Home page</h2>\n");
-		responseTemplate.append("<input type=\"button\" onclick=\"location.href='/testToDB/removaddinging';\" value=\"Add user\" />   ");
-		responseTemplate.append("<input type=\"button\" onclick=\"location.href='/testToDB/removing';\" value=\"Remove user\" /><br><br>");
+		
+		responseTemplate.append("<input type=\"button\" onclick=\"location.href='/testToDB/adding';\" value=\"Home\" />   ");
+		responseTemplate.append("<input type=\"button\" onclick=\"location.href='/testToDB/adding';\" value=\"Adding\" />   ");
+		responseTemplate.append("<input type=\"button\" onclick=\"location.href='/testToDB/removing';\" value=\"Removing\" /><br><br>");
+		
 		responseTemplate.append("<table border=\"1\">");
 
 		FactoryDB factory = new FactoryDBsql();
