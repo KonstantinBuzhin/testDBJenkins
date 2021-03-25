@@ -45,7 +45,7 @@ public class TableServlet extends HttpServlet {
 						+ "</td>" + "<td>" + x.getAge() + "</td>" + "  </tr>\r\n");
 			});
 		}
-		responseTable.append(responseTable);
+		responseTable.append(responseTable.toString());
 		responseTemplate.append("</table>");
 		responseTemplate.append("</body>\n" + "</html>");
 		response.getWriter().write(responseTemplate.toString());
