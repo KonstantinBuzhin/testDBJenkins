@@ -204,20 +204,20 @@ public class PostgreSQLConnectorDB implements ConnectorDB {
 		
 		if (change != null) {
 			try {
-				PreparedStatement pst = connection.prepareStatement("SELECT * FROM USERS ORDER BY ? ?");
-				pst.setString(1, field);
-				pst.setString(2, change);
-				ResultSet rs = pst.executeQuery();
+
+				Statement st = connection.createStatement();
+				ResultSet rs = st.executeQuery("SELECT * FROM USERS ORDER BY "+field+" "+change);
 				while (rs.next()) {
 					User user = new User();
 					user.setIdUser(rs.getInt("id"));
 					user.setUsername(rs.getString("username"));
 					user.setAge(rs.getInt("age"));
+					System.out.println(user);
 					listUsers.add(user);
 				}
 
 				rs.close();
-				pst.close();
+				st.close();
 			} catch (SQLException ex) {
 				ex.printStackTrace();
 			}
