@@ -15,13 +15,13 @@ import model.User;
 
 public class TableServlet extends HttpServlet {
 
-//	public static void main(String[] args) {
-//		FactoryDB factory = new FactoryDBsql();
-//		ConnectorDB connector = factory.getConnectorDB(new PostgreSQLConnectorDB());
-//		List<User> listUsers = connector.sortUsers("age", "decrease");
-//		System.out.println(listUsers != null);
-//		listUsers.forEach(x -> System.out.println(x));
-//	}
+	public static void main(String[] args) {
+		FactoryDB factory = new FactoryDBsql();
+		ConnectorDB connector = factory.getConnectorDB(new PostgreSQLConnectorDB());
+		List<User> listUsers = connector.sortUsers("age", "increase");
+		System.out.println(listUsers != null);
+		listUsers.forEach(x -> System.out.println(x));
+	}
 
 	private FactoryDB factory;
 	private ConnectorDB connector;

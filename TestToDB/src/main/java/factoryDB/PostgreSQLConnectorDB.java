@@ -44,7 +44,7 @@ public class PostgreSQLConnectorDB implements ConnectorDB {
 
 	@Override
 	public void addUser(User user) {
-		try (Connection connection = createConnection();
+		try (Connection connection = DBCPDataSource.getConnection();
 				PreparedStatement pst = connection.prepareStatement("INSERT INTO users(username, age) VALUES(?, ?)");) {
 			pst.setString(1, user.getUsername());
 			pst.setInt(2, user.getAge());
@@ -58,7 +58,7 @@ public class PostgreSQLConnectorDB implements ConnectorDB {
 	@Override
 	public void getUserById(User user) {
 
-		try (Connection connection = createConnection();
+		try (Connection connection = DBCPDataSource.getConnection();
 				Statement stmt = connection.createStatement();
 				CallableStatement proc = connection.prepareCall("{ ? = call updateIvan() }")) {
 			stmt.execute("CREATE OR REPLACE PROCEDURE updateIvan(theAge int) AS '" + " BEGIN "
@@ -80,7 +80,7 @@ public class PostgreSQLConnectorDB implements ConnectorDB {
 
 	@Override
 	public void removeUser(User user) {
-		try (Connection connection = createConnection();
+		try (Connection connection = DBCPDataSource.getConnection();
 				PreparedStatement pst = connection.prepareStatement("DELETE FROM users WHERE id = ?");) {
 			pst.setInt(1, user.getIdUser());
 			pst.execute();
@@ -102,7 +102,7 @@ public class PostgreSQLConnectorDB implements ConnectorDB {
 		}
 
 		if (change != null) {
-			try (Connection connection = createConnection();
+			try (Connection connection = DBCPDataSource.getConnection();
 					Statement st = connection.createStatement();
 					ResultSet rs = st.executeQuery("SELECT * FROM USERS ORDER BY " + field + " " + change);) {
 				while (rs.next()) {
