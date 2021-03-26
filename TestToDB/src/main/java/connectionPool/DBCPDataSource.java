@@ -10,7 +10,7 @@ public class DBCPDataSource {
     private static BasicDataSource ds = new BasicDataSource();
     
     static {
-        ds.setUrl("jdbc:postgresql://192.168.1.103:5432/testingdb");
+        ds.setUrl("jdbc:postgresql://35.226.52.64:5432/testingdb");
         ds.setUsername("postgres");
         ds.setPassword("postgres");
         ds.setMinIdle(5);
