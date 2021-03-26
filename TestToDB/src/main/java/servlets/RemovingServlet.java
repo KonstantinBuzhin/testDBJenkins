@@ -18,7 +18,7 @@ public class RemovingServlet extends HttpServlet {
 	private FactoryDB factory;
 	private ConnectorDB connector;
 	public String title = "Removing page";
-	
+
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
 
@@ -51,11 +51,11 @@ public class RemovingServlet extends HttpServlet {
 		responseTemplate.append("</body>\n" + "</html>");
 		response.getWriter().write(responseTemplate.toString());
 	}
-	
+
 	public StringBuilder getHeaderPage(String title) {
 		StringBuilder responseTemplate = new StringBuilder("<html>\n"
 				+ "<link rel=\"stylesheet\" href=\"https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css\">"
-				+ "<body>\n" + "<h2>"+title+"</h2>\n");
+				+ "<body>\n" + "<h2>" + title + "</h2>\n");
 		responseTemplate.append("<input type=\"button\" onclick=\"location.href='/testToDB/';\" value=\"Home\" />   ");
 		responseTemplate
 				.append("<input type=\"button\" onclick=\"location.href='/testToDB/adding';\" value=\"Adding\" />   ");
