@@ -12,23 +12,28 @@ import factoryDB.FactoryDBsql;
 import factoryDB.PostgreSQLConnectorDB;
 import model.User;
 
-public class HomeAction implements Action{
-	
+public class HomeAction implements Action {
+
 	private FactoryDB factory;
 	private ConnectorDB connector;
 	public String title = "Home page";
-	
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		StringBuilder responseTemplate = getHeaderPage(title);
 		responseTemplate.append(getTableSort());
-		responseTemplate.append("<table border=\"1\">\r\n");
-
+		responseTemplate.append("<table border=\"1\">");
 		factory = new FactoryDBsql();
 		connector = factory.getConnectorDB(new PostgreSQLConnectorDB());
-		List<User> listUsers = connector.getUsers();
-		if (listUsers != null) {
+		if (request.getParameter("field") != null && request.getParameter("howToChange") != null) {
+			List<User> listUsers = connector.sortUsers(request.getParameter("field"),
+					request.getParameter("howToChange"));
+			listUsers.forEach(x -> {
+				responseTemplate.append("  <tr>\r\n" + "<td>" + x.getIdUser() + "</td>" + "<td>" + x.getUsername()
+						+ "</td>" + "<td>" + x.getAge() + "</td>" + "  </tr>\r\n");
+			});
+		} else {
+			List<User> listUsers = connector.getUsers();
 			listUsers.forEach(x -> {
 				responseTemplate.append("  <tr>\r\n" + "<td>" + x.getIdUser() + "</td>" + "<td>" + x.getUsername()
 						+ "</td>" + "<td>" + x.getAge() + "</td>" + "  </tr>\r\n");
@@ -37,9 +42,9 @@ public class HomeAction implements Action{
 		responseTemplate.append("</table>");
 		responseTemplate.append("</body>\n" + "</html>");
 		response.getWriter().write(responseTemplate.toString());
-		
+
 	}
-	
+
 	public StringBuilder getHeaderPage(String title) {
 		StringBuilder responseTemplate = new StringBuilder("<html>\n"
 				+ "<link rel=\"stylesheet\" href=\"https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css\">"
