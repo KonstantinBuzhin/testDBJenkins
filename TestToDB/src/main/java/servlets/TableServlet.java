@@ -79,7 +79,7 @@ public class TableServlet extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		
-		String actionKey = "home";
+		String actionKey = request.getParameter("action");
 		Action action = actionMap.get(actionKey);
         action.execute(request, response);
 //		StringBuilder responseTemplate = getHeaderPage(title);
