@@ -1,12 +1,19 @@
 package servlets;
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import commandPattern.Action;
+import commandPattern.AddAction;
+import commandPattern.HomeAction;
+import commandPattern.RemoveAction;
 import factoryDB.ConnectorDB;
 import factoryDB.FactoryDB;
 import factoryDB.FactoryDBsql;
@@ -15,37 +22,58 @@ import model.User;
 
 public class TableServlet extends HttpServlet {
 
-	public static void main(String[] args) {
-		FactoryDB factory = new FactoryDBsql();
-		ConnectorDB connector = factory.getConnectorDB(new PostgreSQLConnectorDB());
-		List<User> listUsers = connector.getUsers();
-		System.out.println(listUsers != null);
-		listUsers.forEach(x -> System.out.println(x));
-	}
+//	public static void main(String[] args) {
+//		FactoryDB factory = new FactoryDBsql();
+//		ConnectorDB connector = factory.getConnectorDB(new PostgreSQLConnectorDB());
+//		List<User> listUsers = connector.getUsers();
+//		System.out.println(listUsers != null);
+//		listUsers.forEach(x -> System.out.println(x));
+//	}
 
 	private FactoryDB factory;
 	private ConnectorDB connector;
 	public String title = "Home page";
+	
+	private Map<String,Action> actionMap = new HashMap<String,Action>();
+	
+	
+
+	@Override
+	public void init() throws ServletException {
+		actionMap.put("home", new HomeAction());
+		actionMap.put("add", new AddAction());
+		actionMap.put("remove", new RemoveAction());
+	}
 
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		
+		
+		String actionKey = "home";
+		Action action = actionMap.get(actionKey);
+        action.execute(request, response);
+		
+		
+		
+		
+		
 
-		StringBuilder responseTemplate = getHeaderPage(title);
-		responseTemplate.append(getTableSort());
-		responseTemplate.append("<table border=\"1\">\r\n");
-
-		factory = new FactoryDBsql();
-		connector = factory.getConnectorDB(new PostgreSQLConnectorDB());
-		List<User> listUsers = connector.getUsers();
-		if (listUsers != null) {
-			listUsers.forEach(x -> {
-				responseTemplate.append("  <tr>\r\n" + "<td>" + x.getIdUser() + "</td>" + "<td>" + x.getUsername()
-						+ "</td>" + "<td>" + x.getAge() + "</td>" + "  </tr>\r\n");
-			});
-		}
-		responseTemplate.append("</table>");
-		responseTemplate.append("</body>\n" + "</html>");
-		response.getWriter().write(responseTemplate.toString());
+//		StringBuilder responseTemplate = getHeaderPage(title);
+//		responseTemplate.append(getTableSort());
+//		responseTemplate.append("<table border=\"1\">\r\n");
+//
+//		factory = new FactoryDBsql();
+//		connector = factory.getConnectorDB(new PostgreSQLConnectorDB());
+//		List<User> listUsers = connector.getUsers();
+//		if (listUsers != null) {
+//			listUsers.forEach(x -> {
+//				responseTemplate.append("  <tr>\r\n" + "<td>" + x.getIdUser() + "</td>" + "<td>" + x.getUsername()
+//						+ "</td>" + "<td>" + x.getAge() + "</td>" + "  </tr>\r\n");
+//			});
+//		}
+//		responseTemplate.append("</table>");
+//		responseTemplate.append("</body>\n" + "</html>");
+//		response.getWriter().write(responseTemplate.toString());
 	}
 
 	@Override
