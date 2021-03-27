@@ -78,27 +78,31 @@ public class TableServlet extends HttpServlet {
 
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
-		StringBuilder responseTemplate = getHeaderPage(title);
-		responseTemplate.append(getTableSort());
-		responseTemplate.append("<table border=\"1\">");
-		if (request.getParameter("field") != null && request.getParameter("howToChange") != null) {
-			factory = new FactoryDBsql();
-			connector = factory.getConnectorDB(new PostgreSQLConnectorDB());
-			List<User> listUsers = connector.sortUsers(request.getParameter("field"),
-					request.getParameter("howToChange"));
-			if (listUsers != null) {
-				listUsers.forEach(x -> {
-					responseTemplate.append("  <tr>\r\n" + "<td>" + x.getIdUser() + "</td>" + "<td>" + x.getUsername()
-							+ "</td>" + "<td>" + x.getAge() + "</td>" + "  </tr>\r\n");
-				});
-			}
-		} else {
-
-		}
-
-		responseTemplate.append("</table>");
-		responseTemplate.append("</body>\n" + "</html>");
-		response.getWriter().write(responseTemplate.toString());
+		
+		String actionKey = "home";
+		Action action = actionMap.get(actionKey);
+        action.execute(request, response);
+//		StringBuilder responseTemplate = getHeaderPage(title);
+//		responseTemplate.append(getTableSort());
+//		responseTemplate.append("<table border=\"1\">");
+//		if (request.getParameter("field") != null && request.getParameter("howToChange") != null) {
+//			factory = new FactoryDBsql();
+//			connector = factory.getConnectorDB(new PostgreSQLConnectorDB());
+//			List<User> listUsers = connector.sortUsers(request.getParameter("field"),
+//					request.getParameter("howToChange"));
+//			if (listUsers != null) {
+//				listUsers.forEach(x -> {
+//					responseTemplate.append("  <tr>\r\n" + "<td>" + x.getIdUser() + "</td>" + "<td>" + x.getUsername()
+//							+ "</td>" + "<td>" + x.getAge() + "</td>" + "  </tr>\r\n");
+//				});
+//			}
+//		} else {
+//
+//		}
+//
+//		responseTemplate.append("</table>");
+//		responseTemplate.append("</body>\n" + "</html>");
+//		response.getWriter().write(responseTemplate.toString());
 	}
 
 	public StringBuilder getHeaderPage(String title) {
