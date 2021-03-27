@@ -10,6 +10,7 @@ public class DBCPDataSource {
     private static BasicDataSource ds = new BasicDataSource();
     
     static {
+    	ds.setDriverClassName("org.postgresql.Driver");
         ds.setUrl("jdbc:postgresql://35.226.52.64:5432/testingdb");
         ds.setUsername("postgres");
         ds.setPassword("postgres");

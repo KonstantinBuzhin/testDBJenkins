@@ -25,7 +25,7 @@ public class PostgreSQLConnectorDB implements ConnectorDB {
 	@Override
 	public List<User> getUsers() {
 		List<User> listUsers = new ArrayList<>();
-		try (Connection connection = createConnection();
+		try (Connection connection = DBCPDataSource.getConnection();
 				Statement stmt = connection.createStatement();
 				ResultSet rs = stmt.executeQuery("SELECT * from users")) {
 
