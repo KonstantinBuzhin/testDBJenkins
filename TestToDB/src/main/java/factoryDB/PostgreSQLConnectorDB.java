@@ -84,7 +84,7 @@ public class PostgreSQLConnectorDB implements ConnectorDB {
 	@Override
 	public void removeUser(User user) {
 		try (Connection connection = DBCPDataSource.getConnection();
-				PreparedStatement pst = connection.prepareStatement("UPDATE users SET exists=0 WHERE id = ?");) {
+				PreparedStatement pst = connection.prepareStatement("UPDATE users SET exists=false WHERE id = ?");) {
 			pst.setInt(1, user.getIdUser());
 			pst.execute();
 		} catch (Exception e) {
