@@ -30,11 +30,13 @@ public class PostgreSQLConnectorDB implements ConnectorDB {
 				ResultSet rs = stmt.executeQuery("SELECT * from users")) {
 
 			while (rs.next()) {
-				User user = new User();
-				user.setIdUser(rs.getInt("id"));
-				user.setUsername(rs.getString("username"));
-				user.setAge(rs.getInt("age"));
-				listUsers.add(user);
+				if (rs.getBoolean("exists")) {
+					User user = new User();
+					user.setIdUser(rs.getInt("id"));
+					user.setUsername(rs.getString("username"));
+					user.setAge(rs.getInt("age"));
+					listUsers.add(user);
+				}
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -82,7 +84,7 @@ public class PostgreSQLConnectorDB implements ConnectorDB {
 	@Override
 	public void removeUser(User user) {
 		try (Connection connection = DBCPDataSource.getConnection();
-				PreparedStatement pst = connection.prepareStatement("DELETE FROM users WHERE id = ?");) {
+				PreparedStatement pst = connection.prepareStatement("UPDATE users SET exists=0 WHERE id = ?");) {
 			pst.setInt(1, user.getIdUser());
 			pst.execute();
 		} catch (Exception e) {
@@ -107,11 +109,13 @@ public class PostgreSQLConnectorDB implements ConnectorDB {
 					Statement st = connection.createStatement();
 					ResultSet rs = st.executeQuery("SELECT * FROM USERS ORDER BY " + field + " " + change);) {
 				while (rs.next()) {
-					User user = new User();
-					user.setIdUser(rs.getInt("id"));
-					user.setUsername(rs.getString("username"));
-					user.setAge(rs.getInt("age"));
-					listUsers.add(user);
+					if (rs.getBoolean("exists")) {
+						User user = new User();
+						user.setIdUser(rs.getInt("id"));
+						user.setUsername(rs.getString("username"));
+						user.setAge(rs.getInt("age"));
+						listUsers.add(user);
+					}
 				}
 			} catch (Exception e) {
 				e.printStackTrace();
