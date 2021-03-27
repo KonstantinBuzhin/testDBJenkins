@@ -48,9 +48,10 @@ public class PostgreSQLConnectorDB implements ConnectorDB {
 	@Override
 	public void addUser(User user) {
 		try (Connection connection = DBCPDataSource.getConnection();
-				PreparedStatement pst = connection.prepareStatement("INSERT INTO users(username, age) VALUES(?, ?)");) {
+				PreparedStatement pst = connection.prepareStatement("INSERT INTO users(username, age, exists) VALUES(?, ?, ?)");) {
 			pst.setString(1, user.getUsername());
 			pst.setInt(2, user.getAge());
+			pst.setBoolean(3, true);
 			pst.execute();
 		} catch (Exception e) {
 			e.printStackTrace();
