@@ -11,37 +11,41 @@ import factoryDB.FactoryDB;
 import factoryDB.FactoryDBsql;
 import factoryDB.PostgreSQLConnectorDB;
 import model.User;
+import services.HomePageService;
+import services.PageService;
 
 public class HomeAction implements Action {
 
-	private FactoryDB factory;
-	private ConnectorDB connector;
-	public String title = "Home page";
+//	private FactoryDB factory;
+//	private ConnectorDB connector;
+//	public String title = "Home page";
+	private final PageService service = new HomePageService();
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws IOException {
-		StringBuilder responseTemplate = getHeaderPage(title);
-		responseTemplate.append(getTableSort());
-		responseTemplate.append("<table border=\"1\">");
-		factory = new FactoryDBsql();
-		connector = factory.getConnectorDB(new PostgreSQLConnectorDB());
-		if (request.getParameter("field") != null && request.getParameter("howToChange") != null) {
-			List<User> listUsers = connector.sortUsers(request.getParameter("field"),
-					request.getParameter("howToChange"));
-			listUsers.forEach(x -> {
-				responseTemplate.append("  <tr>\r\n" + "<td>" + x.getIdUser() + "</td>" + "<td>" + x.getUsername()
-						+ "</td>" + "<td>" + x.getAge() + "</td>" + "  </tr>\r\n");
-			});
-		} else {
-			List<User> listUsers = connector.getUsers();
-			listUsers.forEach(x -> {
-				responseTemplate.append("  <tr>\r\n" + "<td>" + x.getIdUser() + "</td>" + "<td>" + x.getUsername()
-						+ "</td>" + "<td>" + x.getAge() + "</td>" + "  </tr>\r\n");
-			});
-		}
-		responseTemplate.append("</table>");
-		responseTemplate.append("</body>\n" + "</html>");
-		response.getWriter().write(responseTemplate.toString());
+		service.createPage(request, response);
+//		StringBuilder responseTemplate = getHeaderPage(title);
+//		responseTemplate.append(getTableSort());
+//		responseTemplate.append("<table border=\"1\">");
+//		factory = new FactoryDBsql();
+//		connector = factory.getConnectorDB(new PostgreSQLConnectorDB());
+//		if (request.getParameter("field") != null && request.getParameter("howToChange") != null) {
+//			List<User> listUsers = connector.sortUsers(request.getParameter("field"),
+//					request.getParameter("howToChange"));
+//			listUsers.forEach(x -> {
+//				responseTemplate.append("  <tr>\r\n" + "<td>" + x.getIdUser() + "</td>" + "<td>" + x.getUsername()
+//						+ "</td>" + "<td>" + x.getAge() + "</td>" + "  </tr>\r\n");
+//			});
+//		} else {
+//			List<User> listUsers = connector.getUsers();
+//			listUsers.forEach(x -> {
+//				responseTemplate.append("  <tr>\r\n" + "<td>" + x.getIdUser() + "</td>" + "<td>" + x.getUsername()
+//						+ "</td>" + "<td>" + x.getAge() + "</td>" + "  </tr>\r\n");
+//			});
+//		}
+//		responseTemplate.append("</table>");
+//		responseTemplate.append("</body>\n" + "</html>");
+//		response.getWriter().write(responseTemplate.toString());
 
 	}
 
@@ -65,6 +69,8 @@ public class HomeAction implements Action {
 		responseTemplate.append("<input type=\"radio\" id=\"decrease\"\r\n"
 				+ "     name=\"howToChange\" value=\"decrease\" required />\r\n"
 				+ "    <label for=\"username\">Decrease</label>\r\n");
+		
+		responseTemplate.append("<input type=\"hidden\" id=\"action\" name=\"action\" value=\"home\">");
 
 		responseTemplate.append("<input type=\"submit\" value=\"Sort\" />");
 

@@ -7,6 +7,19 @@
         <servlet-class>servlets.TableServlet</servlet-class>
     </servlet>
     
+    
+    
+    <servlet-mapping>
+        <servlet-name>tableServlet</servlet-name>
+        <url-pattern>/</url-pattern>
+    </servlet-mapping>
+    
+    
+    
+    
+    
+    
+    
     <servlet>
         <servlet-name>addingServlet</servlet-name>
         <servlet-class>servlets.AddingServlet</servlet-class>
@@ -30,10 +43,5 @@
     <servlet-mapping>
         <servlet-name>tableServlet</servlet-name>
         <url-pattern>/table</url-pattern>
-    </servlet-mapping>
-    
-    <servlet-mapping>
-        <servlet-name>tableServlet</servlet-name>
-        <url-pattern>/</url-pattern>
     </servlet-mapping>
 </web-app>

@@ -1,13 +1,6 @@
-package commandPattern;
+package pages;
 
-import java.io.IOException;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
-public interface Action {
-	
-	void execute(HttpServletRequest request, HttpServletResponse response)throws IOException;
+public interface Page {
 	
 	default StringBuilder getHeaderPage(String title) {
 		StringBuilder responseTemplate = new StringBuilder("<html>\n"
