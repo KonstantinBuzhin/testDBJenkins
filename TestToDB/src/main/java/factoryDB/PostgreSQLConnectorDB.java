@@ -53,7 +53,7 @@ public class PostgreSQLConnectorDB implements ConnectorDB {
 	}
 
 	@Override
-	public void getUserById(User user) {
+	public User getUserById(User user) {
 
 		try (Connection connection = DBCPDataSource.getConnection();
 				Statement stmt = connection.createStatement();
@@ -72,6 +72,7 @@ public class PostgreSQLConnectorDB implements ConnectorDB {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		return new User();
 
 	}
 

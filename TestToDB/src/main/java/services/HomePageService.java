@@ -8,7 +8,6 @@ import javax.servlet.http.HttpServletResponse;
 import factoryDB.ConnectorDB;
 import factoryDB.FactoryDB;
 import factoryDB.FactoryDBPostgres;
-import factoryDB.PostgreSQLConnectorDB;
 import pages.HomePage;
 
 public class HomePageService implements PageService {

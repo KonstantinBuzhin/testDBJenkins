@@ -18,8 +18,8 @@ public class MySQLConnectorDB implements ConnectorDB {
 	}
 
 	@Override
-	public void getUserById(User user) {
-		
+	public User getUserById(User user) {
+		return new User();
 	}
 
 	@Override

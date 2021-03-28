@@ -10,6 +10,6 @@ public interface ConnectorDB {
 	List<User> sortUsers(String field, String howToChange);
 	void addUser(User user);
 	void removeUser(User user);
-	void getUserById(User user);
+	User getUserById(User user);
 
 }
