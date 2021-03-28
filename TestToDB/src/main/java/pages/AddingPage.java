@@ -17,8 +17,5 @@ public class AddingPage implements Page{
 	public StringBuilder getSuccessfulLabel() {
 		return new StringBuilder().append("<h4>User is added</h>");
 	}
-	public StringBuilder getFooterPage() {
-		return new StringBuilder().append("</body>\n" + "</html>");
-	}
 
 }

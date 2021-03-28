@@ -20,11 +20,10 @@ public class HomePage implements Page {
 			responseTemplate.append(getTableRowUser(user));
 		});
 		responseTemplate.append("</table>");
-		responseTemplate.append("</body>\n" + "</html>");
 		return responseTemplate;
 	}
 
-	public StringBuilder getTableSort() {
+	public StringBuilder getFormSort() {
 		StringBuilder responseTemplate = new StringBuilder();
 		responseTemplate.append("<form action=\"\" method=\"post\">");
 

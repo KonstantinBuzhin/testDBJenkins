@@ -1,7 +1,6 @@
 package services;
 
 import java.io.IOException;
-import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -10,7 +9,6 @@ import factoryDB.ConnectorDB;
 import factoryDB.FactoryDB;
 import factoryDB.FactoryDBsql;
 import factoryDB.PostgreSQLConnectorDB;
-import model.User;
 import pages.HomePage;
 
 public class HomePageService implements PageService {
@@ -22,7 +20,7 @@ public class HomePageService implements PageService {
 	@Override
 	public void createPage(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		StringBuilder responseTemplate = homePage.getHeaderPage(TITLE_PAGE);
-		responseTemplate.append(homePage.getTableSort());
+		responseTemplate.append(homePage.getFormSort());
 		factory = new FactoryDBsql();
 		connector = factory.getConnectorDB(new PostgreSQLConnectorDB());
 		if (request.getParameter("field") != null && request.getParameter("howToChange") != null) {
@@ -31,6 +29,7 @@ public class HomePageService implements PageService {
 		} else {
 			responseTemplate.append(homePage.getTableUsers(connector.getUsers()));
 		}
+		responseTemplate.append(homePage.getFooterPage());
 		response.getWriter().write(responseTemplate.toString());
 	}
 

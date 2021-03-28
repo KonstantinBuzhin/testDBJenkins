@@ -11,7 +11,6 @@ import factoryDB.FactoryDBsql;
 import factoryDB.PostgreSQLConnectorDB;
 import model.User;
 import pages.AddingPage;
-import pages.HomePage;
 
 public class AddingPageService implements PageService {
 	
@@ -30,7 +29,7 @@ public class AddingPageService implements PageService {
 			user.setUsername(request.getParameter("username"));
 			user.setAge(Integer.valueOf(request.getParameter("age")));
 			connector.addUser(user);
-			responseTemplate.append("<h4>User is added</h>");
+			responseTemplate.append(addingPage.getSuccessfulLabel());
 		} else {
 			responseTemplate.append(addingPage.getFormAdding());
 		}
