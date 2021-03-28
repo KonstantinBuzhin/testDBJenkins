@@ -38,8 +38,8 @@ public class TableServlet extends HttpServlet {
 
 	@Override
 	public void init() throws ServletException {
-		actionMap.put(PAGE_ADD, new HomeAction());
-		actionMap.put(PAGE_HOME, new AddAction());
+		actionMap.put(PAGE_ADD, new AddAction());
+		actionMap.put(PAGE_HOME, new HomeAction());
 		actionMap.put(PAGE_REMOVE, new RemoveAction());
 	}
 
