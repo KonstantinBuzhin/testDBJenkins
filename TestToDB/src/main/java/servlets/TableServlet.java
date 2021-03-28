@@ -56,31 +56,4 @@ public class TableServlet extends HttpServlet {
 		actionMap.get(actionKey).execute(request, response);
 	}
 
-	public StringBuilder getTableSort() {
-		StringBuilder responseTemplate = new StringBuilder();
-		responseTemplate.append("<form action=\"\" method=\"post\">");
-
-		responseTemplate.append(
-				"<input type=\"radio\" id=\"username\"\r\n" + "     name=\"field\" value=\"username\" required />\r\n"
-						+ "    <label for=\"username\">Username</label>\r\n");
-
-		responseTemplate.append("<input type=\"radio\" id=\"age\"\r\n"
-				+ "     name=\"field\" value=\"age\" required />\r\n" + "    <label for=\"username\">Age</label>\r\n");
-
-		responseTemplate.append("<br>");
-
-		responseTemplate.append("<input type=\"radio\" id=\"increase\"\r\n"
-				+ "     name=\"howToChange\" value=\"increase\" required />\r\n"
-				+ "    <label for=\"username\">Increase</label>\r\n");
-
-		responseTemplate.append("<input type=\"radio\" id=\"decrease\"\r\n"
-				+ "     name=\"howToChange\" value=\"decrease\" required />\r\n"
-				+ "    <label for=\"username\">Decrease</label>\r\n");
-
-		responseTemplate.append("<input type=\"submit\" value=\"Sort\" />");
-
-		responseTemplate.append("</form> ");
-		return responseTemplate;
-	};
-
 }

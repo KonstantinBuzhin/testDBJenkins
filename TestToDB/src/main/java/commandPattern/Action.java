@@ -13,11 +13,15 @@ public interface Action {
 		StringBuilder responseTemplate = new StringBuilder("<html>\n"
 				+ "<link rel=\"stylesheet\" href=\"https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css\">"
 				+ "<body>\n" + "<h2>" + title + "</h2>\n");
-		responseTemplate.append("<input type=\"button\" onclick=\"location.href='/testToDB/';\" value=\"Home\" />   ");
-		responseTemplate
-				.append("<input type=\"button\" onclick=\"location.href='/testToDB/adding';\" value=\"Adding\" />   ");
-		responseTemplate.append(
-				"<input type=\"button\" onclick=\"location.href='/testToDB/removing';\" value=\"Removing\" /><br><br>");
+		responseTemplate.append("<form action=\"\" method=\"post\">"
+				+ "<input type=\"hidden\" id=\"action\" name=\"action\" value=\"home\">"
+				+ "<input type=\"submit\" value=\"Home\" /></form>   ");
+		responseTemplate.append("<form action=\"\" method=\"post\">"
+				+ "<input type=\"hidden\" id=\"action\" name=\"action\" value=\"add\">"
+				+ "<input type=\"submit\" value=\"Adding\" /></form>   ");
+		responseTemplate.append("<form action=\"\" method=\"post\">"
+				+ "<input type=\"hidden\" id=\"action\" name=\"remove\" value=\"home\">"
+				+ "<input type=\"submit\" value=\"Removing\" /></form>   ");
 		return responseTemplate;
 	};
 }
