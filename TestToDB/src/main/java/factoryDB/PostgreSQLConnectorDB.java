@@ -2,10 +2,8 @@ package factoryDB;
 
 import java.sql.CallableStatement;
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.Types;
 import java.util.ArrayList;
@@ -15,12 +13,6 @@ import connectionPool.DBCPDataSource;
 import model.User;
 
 public class PostgreSQLConnectorDB implements ConnectorDB {
-
-	// Database credentials
-//	static final String DB_URL = "jdbc:postgresql://35.226.52.64:5432/testingdb";
-	static final String DB_URL = "jdbc:postgresql://192.168.1.103:5432/testingdb";
-	static final String USER = "postgres";
-	static final String PASS = "postgres";
 
 	@Override
 	public List<User> getUsers() {
@@ -48,7 +40,8 @@ public class PostgreSQLConnectorDB implements ConnectorDB {
 	@Override
 	public void addUser(User user) {
 		try (Connection connection = DBCPDataSource.getConnection();
-				PreparedStatement pst = connection.prepareStatement("INSERT INTO users(username, age, exists) VALUES(?, ?, ?)");) {
+				PreparedStatement pst = connection
+						.prepareStatement("INSERT INTO users(username, age, exists) VALUES(?, ?, ?)");) {
 			pst.setString(1, user.getUsername());
 			pst.setInt(2, user.getAge());
 			pst.setBoolean(3, true);
@@ -125,24 +118,6 @@ public class PostgreSQLConnectorDB implements ConnectorDB {
 
 		return listUsers;
 
-	}
-
-	public Connection createConnection() {
-		try {
-			Class.forName("org.postgresql.Driver");
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
-		}
-
-		Connection connection = null;
-
-		try {
-			connection = DriverManager.getConnection(DB_URL, USER, PASS);
-
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		return connection;
 	}
 
 }

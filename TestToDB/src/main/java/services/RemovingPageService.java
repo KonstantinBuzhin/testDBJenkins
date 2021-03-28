@@ -7,8 +7,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import factoryDB.ConnectorDB;
 import factoryDB.FactoryDB;
-import factoryDB.FactoryDBsql;
-import factoryDB.PostgreSQLConnectorDB;
+import factoryDB.FactoryDBPostgres;
 import model.User;
 import pages.RemovingPage;
 
@@ -24,8 +23,8 @@ public class RemovingPageService implements PageService {
 		StringBuilder responseTemplate = removingPage.getHeaderPage(TITLE_PAGE);
 
 		if (request.getParameter("id") != null) {
-			factory = new FactoryDBsql();
-			connector = factory.getConnectorDB(new PostgreSQLConnectorDB());
+			factory = new FactoryDBPostgres();
+			connector = factory.getConnectorDB();
 			User user = new User();
 			user.setIdUser(Integer.valueOf(request.getParameter("id")));
 			connector.removeUser(user);

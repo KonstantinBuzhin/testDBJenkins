@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import factoryDB.ConnectorDB;
 import factoryDB.FactoryDB;
-import factoryDB.FactoryDBsql;
+import factoryDB.FactoryDBPostgres;
 import factoryDB.PostgreSQLConnectorDB;
 import pages.HomePage;
 
@@ -21,8 +21,8 @@ public class HomePageService implements PageService {
 	public void createPage(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		StringBuilder responseTemplate = homePage.getHeaderPage(TITLE_PAGE);
 		responseTemplate.append(homePage.getFormSort());
-		factory = new FactoryDBsql();
-		connector = factory.getConnectorDB(new PostgreSQLConnectorDB());
+		factory = new FactoryDBPostgres();
+		connector = factory.getConnectorDB();
 		if (request.getParameter("field") != null && request.getParameter("howToChange") != null) {
 			responseTemplate.append(homePage.getTableUsers(
 					connector.sortUsers(request.getParameter("field"), request.getParameter("howToChange"))));

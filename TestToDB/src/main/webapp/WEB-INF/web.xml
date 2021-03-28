@@ -1,47 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
-  <display-name>TestToDB</display-name>
-  
-  <servlet>
-        <servlet-name>tableServlet</servlet-name>
-        <servlet-class>servlets.TableServlet</servlet-class>
-    </servlet>
-    
-    
-    
-    <servlet-mapping>
-        <servlet-name>tableServlet</servlet-name>
-        <url-pattern>/</url-pattern>
-    </servlet-mapping>
-    
-    
-    
-    
-    
-    
-    
-    <servlet>
-        <servlet-name>addingServlet</servlet-name>
-        <servlet-class>servlets.AddingServlet</servlet-class>
-    </servlet>
-    
-    <servlet>
-        <servlet-name>removingServlet</servlet-name>
-        <servlet-class>servlets.RemovingServlet</servlet-class>
-    </servlet>
-    
-    <servlet-mapping>
-        <servlet-name>removingServlet</servlet-name>
-        <url-pattern>/removing</url-pattern>
-    </servlet-mapping>
-    
-    <servlet-mapping>
-        <servlet-name>addingServlet</servlet-name>
-        <url-pattern>/adding</url-pattern>
-    </servlet-mapping>
-    
-    <servlet-mapping>
-        <servlet-name>tableServlet</servlet-name>
-        <url-pattern>/table</url-pattern>
-    </servlet-mapping>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://java.sun.com/xml/ns/javaee"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+	version="2.5">
+	<display-name>TestToDB</display-name>
+
+	<servlet>
+		<servlet-name>tableServlet</servlet-name>
+		<servlet-class>servlets.TableServlet</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>tableServlet</servlet-name>
+		<url-pattern>/</url-pattern>
+	</servlet-mapping>
+
+	<!-- <servlet> <servlet-name>addingServlet</servlet-name> <servlet-class>servlets.AddingServlet</servlet-class> 
+		</servlet> <servlet> <servlet-name>removingServlet</servlet-name> <servlet-class>servlets.RemovingServlet</servlet-class> 
+		</servlet> <servlet-mapping> <servlet-name>removingServlet</servlet-name> 
+		<url-pattern>/removing</url-pattern> </servlet-mapping> <servlet-mapping> 
+		<servlet-name>addingServlet</servlet-name> <url-pattern>/adding</url-pattern> 
+		</servlet-mapping> <servlet-mapping> <servlet-name>tableServlet</servlet-name> 
+		<url-pattern>/table</url-pattern> </servlet-mapping> -->
 </web-app>

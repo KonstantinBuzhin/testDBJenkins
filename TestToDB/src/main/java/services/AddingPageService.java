@@ -7,8 +7,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import factoryDB.ConnectorDB;
 import factoryDB.FactoryDB;
-import factoryDB.FactoryDBsql;
-import factoryDB.PostgreSQLConnectorDB;
+import factoryDB.FactoryDBPostgres;
 import model.User;
 import pages.AddingPage;
 
@@ -22,8 +21,8 @@ public class AddingPageService implements PageService {
 	@Override
 	public void createPage(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		StringBuilder responseTemplate = addingPage.getHeaderPage(TITLE_PAGE);
-		factory = new FactoryDBsql();
-		connector = factory.getConnectorDB(new PostgreSQLConnectorDB());
+		factory = new FactoryDBPostgres();
+		connector = factory.getConnectorDB();
 		if (request.getParameter("username") != null && request.getParameter("age") != null) {
 			User user = new User();
 			user.setUsername(request.getParameter("username"));
