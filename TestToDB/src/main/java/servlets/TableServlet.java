@@ -38,7 +38,7 @@ public class TableServlet extends HttpServlet {
 
 	@Override
 	protected void doPost(final HttpServletRequest request, final HttpServletResponse response) throws IOException {
-		final String actionKey = (String) request.getAttribute(REQUEST_PARAMETR_ACTION);
+		final String actionKey = request.getParameter(REQUEST_PARAMETR_ACTION);
 		actionMap.get(actionKey).execute(request, response);
 	}
 
