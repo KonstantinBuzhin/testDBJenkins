@@ -9,7 +9,7 @@ public class MySQLConnectorDB implements ConnectorDB {
 
 	@Override
 	public List<User> getUsers() {
-		return null;
+		return new ArrayList<User>();
 	}
 
 	@Override

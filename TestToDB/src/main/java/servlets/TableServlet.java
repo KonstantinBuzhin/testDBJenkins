@@ -22,100 +22,39 @@ import model.User;
 
 public class TableServlet extends HttpServlet {
 
-//	public static void main(String[] args) {
-//		FactoryDB factory = new FactoryDBsql();
-//		ConnectorDB connector = factory.getConnectorDB(new PostgreSQLConnectorDB());
-//		List<User> listUsers = connector.getUsers();
-//		System.out.println(listUsers != null);
-//		listUsers.forEach(x -> System.out.println(x));
-//	}
+	public static void main(String[] args) {
+		FactoryDB factory = new FactoryDBsql();
+		ConnectorDB connector = factory.getConnectorDB(new PostgreSQLConnectorDB());
+		List<User> listUsers = connector.getUsers();
+		System.out.println(listUsers != null);
+		listUsers.forEach(x -> System.out.println(x));
+	}
+	private final String REQUEST_PARAMETR_ACTION = "action";
+	private final String PAGE_ADD = "add";
+	private final String PAGE_HOME = "home";
+	private final String PAGE_REMOVE = "remove";
 
-	private FactoryDB factory;
-	private ConnectorDB connector;
-	public String title = "Home page";
-	
-	private Map<String,Action> actionMap = new HashMap<String,Action>();
-	
-	
+	private final Map<String, Action> actionMap = new HashMap<>();
 
 	@Override
 	public void init() throws ServletException {
-		actionMap.put("home", new HomeAction());
-		actionMap.put("add", new AddAction());
-		actionMap.put("remove", new RemoveAction());
+		actionMap.put(PAGE_ADD, new HomeAction());
+		actionMap.put(PAGE_HOME, new AddAction());
+		actionMap.put(PAGE_REMOVE, new RemoveAction());
 	}
 
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-		
-		
-		String actionKey = "home";
-		Action action = actionMap.get(actionKey);
-        action.execute(request, response);
-		
-		
-		
-		
-		
-
-//		StringBuilder responseTemplate = getHeaderPage(title);
-//		responseTemplate.append(getTableSort());
-//		responseTemplate.append("<table border=\"1\">\r\n");
-//
-//		factory = new FactoryDBsql();
-//		connector = factory.getConnectorDB(new PostgreSQLConnectorDB());
-//		List<User> listUsers = connector.getUsers();
-//		if (listUsers != null) {
-//			listUsers.forEach(x -> {
-//				responseTemplate.append("  <tr>\r\n" + "<td>" + x.getIdUser() + "</td>" + "<td>" + x.getUsername()
-//						+ "</td>" + "<td>" + x.getAge() + "</td>" + "  </tr>\r\n");
-//			});
-//		}
-//		responseTemplate.append("</table>");
-//		responseTemplate.append("</body>\n" + "</html>");
-//		response.getWriter().write(responseTemplate.toString());
+//		final String actionKey = (String) request.getAttribute("home");
+		final String actionKey = "home";
+		actionMap.get(actionKey).execute(request, response);
 	}
 
 	@Override
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
-		
-		String actionKey = request.getParameter("action");
-		Action action = actionMap.get(actionKey);
-        action.execute(request, response);
-//		StringBuilder responseTemplate = getHeaderPage(title);
-//		responseTemplate.append(getTableSort());
-//		responseTemplate.append("<table border=\"1\">");
-//		if (request.getParameter("field") != null && request.getParameter("howToChange") != null) {
-//			factory = new FactoryDBsql();
-//			connector = factory.getConnectorDB(new PostgreSQLConnectorDB());
-//			List<User> listUsers = connector.sortUsers(request.getParameter("field"),
-//					request.getParameter("howToChange"));
-//			if (listUsers != null) {
-//				listUsers.forEach(x -> {
-//					responseTemplate.append("  <tr>\r\n" + "<td>" + x.getIdUser() + "</td>" + "<td>" + x.getUsername()
-//							+ "</td>" + "<td>" + x.getAge() + "</td>" + "  </tr>\r\n");
-//				});
-//			}
-//		} else {
-//
-//		}
-//
-//		responseTemplate.append("</table>");
-//		responseTemplate.append("</body>\n" + "</html>");
-//		response.getWriter().write(responseTemplate.toString());
+	protected void doPost(final HttpServletRequest request, final HttpServletResponse response) throws IOException {
+		final String actionKey = request.getParameter(REQUEST_PARAMETR_ACTION);
+		actionMap.get(actionKey).execute(request, response);
 	}
-
-	public StringBuilder getHeaderPage(String title) {
-		StringBuilder responseTemplate = new StringBuilder("<html>\n"
-				+ "<link rel=\"stylesheet\" href=\"https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css\">"
-				+ "<body>\n" + "<h2>" + title + "</h2>\n");
-		responseTemplate.append("<input type=\"button\" onclick=\"location.href='/testToDB/';\" value=\"Home\" />   ");
-		responseTemplate
-				.append("<input type=\"button\" onclick=\"location.href='/testToDB/adding';\" value=\"Adding\" />   ");
-		responseTemplate.append(
-				"<input type=\"button\" onclick=\"location.href='/testToDB/removing';\" value=\"Removing\" /><br><br>");
-		return responseTemplate;
-	};
 
 	public StringBuilder getTableSort() {
 		StringBuilder responseTemplate = new StringBuilder();
