@@ -26,12 +26,9 @@ public class HomePageService implements PageService {
 		factory = new FactoryDBsql();
 		connector = factory.getConnectorDB(new PostgreSQLConnectorDB());
 		if (request.getParameter("field") != null && request.getParameter("howToChange") != null) {
-//			List<User> listUsers = connector.sortUsers(request.getParameter("field"),
-//					request.getParameter("howToChange"));
-			responseTemplate.append(homePage.getTableUsers(connector.sortUsers(request.getParameter("field"),
-					request.getParameter("howToChange"))));
+			responseTemplate.append(homePage.getTableUsers(
+					connector.sortUsers(request.getParameter("field"), request.getParameter("howToChange"))));
 		} else {
-//			List<User> listUsers = connector.getUsers();
 			responseTemplate.append(homePage.getTableUsers(connector.getUsers()));
 		}
 		response.getWriter().write(responseTemplate.toString());
